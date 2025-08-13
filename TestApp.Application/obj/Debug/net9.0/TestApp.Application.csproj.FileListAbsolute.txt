@@ -1,0 +1,15 @@
+D:\github\dotnet\TestApp\TestApp.Application\bin\Debug\net9.0\TestApp.Application.deps.json
+D:\github\dotnet\TestApp\TestApp.Application\bin\Debug\net9.0\TestApp.Application.dll
+D:\github\dotnet\TestApp\TestApp.Application\bin\Debug\net9.0\TestApp.Application.pdb
+D:\github\dotnet\TestApp\TestApp.Application\bin\Debug\net9.0\TestApp.Domain.dll
+D:\github\dotnet\TestApp\TestApp.Application\bin\Debug\net9.0\TestApp.Domain.pdb
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\TestApp.Application.csproj.AssemblyReference.cache
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\TestApp.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\TestApp.Application.AssemblyInfoInputs.cache
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\TestApp.Application.AssemblyInfo.cs
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\TestApp.Application.csproj.CoreCompileInputs.cache
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\TestApp..9396C08F.Up2Date
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\TestApp.Application.dll
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\refint\TestApp.Application.dll
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\TestApp.Application.pdb
+D:\github\dotnet\TestApp\TestApp.Application\obj\Debug\net9.0\ref\TestApp.Application.dll
