@@ -7,7 +7,7 @@ namespace TestApp.WebApi.Common;
 public record JwtConfig(string Key, string Issuer, string Audience)
 {
     // Always decode base64 key
-    public byte[] KeyBytes => Convert.FromBase64String(Key);
+    public byte[] KeyBytes => Encoding.UTF8.GetBytes(Key);
 };
 
 public record AuthConfig(JwtConfig JwtConfig);

@@ -14,7 +14,7 @@ public static class CustomerEndpoints
     {
         routeBuilder.MapGet("/api/customers", GetAllCustomers);
         routeBuilder.MapPost("/api/customers", CreateCustomer).RequireAuthorization();
-        routeBuilder.MapDelete("/api/customers/{customerId:guid}", DeleteCustomer).RequireAuthorization();
+        routeBuilder.MapDelete("/api/customers/{customerId:guid}", DeleteCustomer).RequireAuthorization("AdminOnly");
     }
 
     private static async Task<IResult> GetAllCustomers(IMediator mediator)

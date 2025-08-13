@@ -16,13 +16,42 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<AppConfig>();
 
-// Register the configurator **first**
-builder.Services.AddSingleton<IConfigureOptions<JwtBearerOptions>, JwtOptionsConfigurator>();
-
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-       .AddJwtBearer(); // now Configure() will be applied
+       .AddJwtBearer(options =>
+       {
+           options.Events = new JwtBearerEvents
+           {
+               OnAuthenticationFailed = ctx =>
+               {
+                   Console.WriteLine("JWT failed: " + ctx.Exception);
+                   return Task.CompletedTask;
+               },
+               OnTokenValidated = ctx =>
+               {
+                   Console.WriteLine("JWT validated for: " + ctx.Principal.Identity.Name);
+                   return Task.CompletedTask;
+               }
+           };
 
-builder.Services.AddAuthorization();
+           var jwtConfig = builder.Configuration.GetSection("AuthConfig:JwtConfig").Get<JwtConfig>()!;
+
+           options.TokenValidationParameters = new TokenValidationParameters
+           {
+               ValidateIssuer = true,
+               ValidateAudience = true,
+               ValidateLifetime = true,
+               ValidateIssuerSigningKey = true,
+               ValidIssuer = jwtConfig.Issuer,
+               ValidAudience = jwtConfig.Audience,
+               IssuerSigningKey = new SymmetricSecurityKey(jwtConfig.KeyBytes)
+           };
+       });
+
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", options => options.RequireRole("Admin"));
+});
 
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddMediatR(options => options.RegisterServicesFromAssembly(typeof(CreateCustomerCommand).Assembly));

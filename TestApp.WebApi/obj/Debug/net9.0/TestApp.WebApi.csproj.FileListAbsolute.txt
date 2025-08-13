@@ -171,4 +171,3 @@ D:\github\dotnet\TestApp\TestApp.WebApi\obj\Debug\net9.0\TestApp.WebApi.pdb
 D:\github\dotnet\TestApp\TestApp.WebApi\obj\Debug\net9.0\TestApp.WebApi.genruntimeconfig.cache
 D:\github\dotnet\TestApp\TestApp.WebApi\obj\Debug\net9.0\ref\TestApp.WebApi.dll
 D:\github\dotnet\TestApp\TestApp.WebApi\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\github\dotnet\TestApp\TestApp.WebApi\bin\Debug\net9.0\Microsoft.Identity.Abstractions.dll
