@@ -1,10 +1,11 @@
-name: .NET Coverage
+name: .NET Core CI with Coverage
 
 on:
     push:
-        branches: ["main"]
+        branches: ["master"]
     pull_request:
-        branches: ["main"]
+        branches: ["master"]
+    workflow_dispatch:
 
 jobs:
     build-and-test:
@@ -17,7 +18,7 @@ jobs:
             - name: Setup .NET
               uses: actions/setup-dotnet@v3
               with:
-                  dotnet-version: 9.0.x
+                  dotnet-version: "9.0.x"
 
             - name: Restore dependencies
               run: dotnet restore
@@ -27,29 +28,25 @@ jobs:
 
             - name: Run tests with coverage
               run: |
-                  mkdir -p TestApp.Tests/TestResults
                   dotnet test \
-                    TestApp.Tests/TestApp.Tests.csproj \
                     --no-build \
                     --settings TestApp.Tests/coverlet/coverage.runsettings \
                     --collect:"XPlat Code Coverage" \
                     --results-directory TestApp.Tests/TestResults \
-                    --logger "trx;LogFileName=test_results.trx" \
                     --verbosity normal
 
             - name: Install ReportGenerator
               run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
             - name: Generate coverage report
-              env:
-                  PATH: ${{ env.PATH }}:/home/runner/.dotnet/tools
               run: |
+                  export PATH="$PATH:$HOME/.dotnet/tools"
                   reportgenerator \
                     -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" \
                     -targetdir:CoverageReport \
                     -reporttypes:Html;TextSummary
 
-            - name: Upload coverage artifact
+            - name: Upload coverage report artifact
               uses: actions/upload-artifact@v3
               with:
                   name: coverage-report
