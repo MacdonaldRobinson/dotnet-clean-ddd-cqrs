@@ -7,11 +7,12 @@ on:
         branches: ["master"]
 
 jobs:
-    build-and-test:
+    build:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v4
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
             - name: Setup .NET
               uses: actions/setup-dotnet@v4
@@ -22,20 +23,21 @@ jobs:
               run: dotnet restore
 
             - name: Build
-              run: dotnet build --no-restore --verbosity minimal
+              run: dotnet build --no-restore --configuration Debug
 
-            - name: Test with coverage
-              run: dotnet test TestApp.Tests/TestApp.Tests.csproj --no-build --settings TestApp.Tests/coverlet/coverage.runsettings --collect:"XPlat Code Coverage"
-
-            - name: Install ReportGenerator
-              run: dotnet tool install --global dotnet-reportgenerator-globaltool
+            - name: Test with code coverage
+              run: dotnet test \
+                  --no-build \
+                  --settings TestApp.Tests/coverlet/coverage.runsettings \
+                  --collect:"XPlat Code Coverage" \
+                  --verbosity normal
 
             - name: Generate coverage report
               run: |
                   reportgenerator \
                     -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" \
                     -targetdir:"CoverageReport" \
-                    -reporttypes:Html;TextSummary
+                    -reporttypes:Html,TextSummary
 
             - name: Show coverage summary in console
               run: cat CoverageReport/Summary.txt
