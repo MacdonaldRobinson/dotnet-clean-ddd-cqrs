@@ -1,0 +1,54 @@
+Summary
+  Generated on: 2025-08-17 - 12:09:30 PM
+  Coverage date: 2025-08-17 - 12:09:29 PM
+  Parser: Cobertura
+  Assemblies: 4
+  Classes: 26
+  Files: 22
+  Line coverage: 87.3%
+  Covered lines: 241
+  Uncovered lines: 35
+  Coverable lines: 276
+  Total lines: 616
+  Branch coverage: 59% (13 of 22)
+  Covered branches: 13
+  Total branches: 22
+  Method coverage: 91.2% (52 of 57)
+  Full method coverage: 84.2% (48 of 57)
+  Covered methods: 52
+  Fully covered methods: 48
+  Total methods: 57
+
+TestApp.Application                                                                          85.7%
+  TestApp.Application.Customers.Commands.CommandHandlers.CreateCustomerCommandHandler         100%
+  TestApp.Application.Customers.Commands.CommandHandlers.DeleteCustomerCommandHandler           0%
+  TestApp.Application.Customers.Commands.CreateCustomerCommand                                100%
+  TestApp.Application.Customers.Commands.DeleteCustomerCommand                                  0%
+  TestApp.Application.Customers.DomainEventHandlers.CustomerCreatedDomainEventHandler         100%
+  TestApp.Application.Customers.Dtos.CustomerReadDto                                          100%
+  TestApp.Application.Customers.Dtos.CustomerWriteDto                                         100%
+  TestApp.Application.Customers.Queries.QueryHandlers.GetAllCustomersQueryHandler             100%
+
+TestApp.Domain                                                                                100%
+  TestApp.Domain.Common.Entities.BaseAggregateRoot<T1, T2>                                    100%
+  TestApp.Domain.Common.Entities.BaseDomainEvent<T>                                           100%
+  TestApp.Domain.Common.Entities.BaseEntiy                                                    100%
+  TestApp.Domain.Customers.Entities.CreateCustomerParam                                       100%
+  TestApp.Domain.Customers.Entities.Customer                                                  100%
+  TestApp.Domain.Customers.ValueObjects.CustomerNameValueObject                               100%
+
+TestApp.Infrastructure                                                                       83.1%
+  TestApp.Infrastructure.AppDbContext                                                        90.9%
+  TestApp.Infrastructure.Common.Repository.BaseRepository<T1, T2>                             100%
+  TestApp.Infrastructure.Customers.EntityTypeConfiguration.CustomerEntityTypeConfiguration    100%
+  TestApp.Infrastructure.Customers.Repositories.CustomerRepository                           66.6%
+
+TestApp.WebApi                                                                               86.7%
+  Program                                                                                    82.3%
+  TestApp.WebApi.Auth.AuthEndpoints                                                            96%
+  TestApp.WebApi.Auth.LoginRequestDto                                                         100%
+  TestApp.WebApi.Auth.LoginResponseDto                                                        100%
+  TestApp.WebApi.Common.AppConfig                                                             100%
+  TestApp.WebApi.Common.AuthConfig                                                            100%
+  TestApp.WebApi.Common.JwtConfig                                                             100%
+  TestApp.WebApi.Customers.CustomerEndpoints                                                 76.4%
