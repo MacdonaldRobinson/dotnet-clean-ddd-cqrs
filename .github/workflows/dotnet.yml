@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout repository
+            - name: Checkout code
               uses: actions/checkout@v4
 
             - name: Setup .NET
@@ -23,27 +23,18 @@ jobs:
               run: dotnet restore
 
             - name: Build
-              run: dotnet build --no-restore --configuration Debug
+              run: dotnet build --no-restore --verbosity normal
 
             - name: Test with code coverage
-              run: dotnet test \
-                  --no-build \
-                  --settings TestApp.Tests/coverlet/coverage.runsettings \
-                  --collect:"XPlat Code Coverage" \
-                  --verbosity normal
-
-            - name: Generate coverage report
               run: |
-                  reportgenerator \
-                    -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" \
-                    -targetdir:"CoverageReport" \
-                    -reporttypes:Html,TextSummary
+                  dotnet test --no-build --settings TestApp.Tests/coverlet/coverage.runsettings --collect:"XPlat Code Coverage" --verbosity normal
 
-            - name: Show coverage summary in console
-              run: cat CoverageReport/Summary.txt
+            - name: Generate coverage reports
+              run: |
+                  reportgenerator -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" -targetdir:CoverageReport -reporttypes:Html;TextSummary
 
-            - name: Upload coverage report artifact
+            - name: Upload coverage reports
               uses: actions/upload-artifact@v4
               with:
                   name: coverage-report
-                  path: CoverageReport/**
+                  path: CoverageReport
