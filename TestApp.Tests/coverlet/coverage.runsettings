@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <Exclude>
+            <!-- Exclude migrations, designer files, etc. -->
+            [*]TestApp.Infrastructure.Migrations.*
+            [*]*Designer.cs
+          </Exclude>
+          <Include>
+            <!-- Include your main projects -->
+            [*]TestApp.Domain.*
+            [*]TestApp.Application.*
+            [*]TestApp.Infrastructure.*
+          </Include>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>
