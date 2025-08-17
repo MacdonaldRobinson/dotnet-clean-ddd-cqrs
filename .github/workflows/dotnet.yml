@@ -7,7 +7,7 @@ on:
         branches: ["master"]
 
 jobs:
-    build:
+    build-and-test:
         runs-on: ubuntu-latest
 
         steps:
@@ -22,27 +22,26 @@ jobs:
               run: dotnet restore
 
             - name: Build
-              run: dotnet build --no-restore
+              run: dotnet build --no-restore --verbosity minimal
 
-            - name: Test with Coverage
-              run: |
-                  dotnet test ./TestApp.Tests/TestApp.Tests.csproj \
-                    --no-build \
-                    --settings ./TestApp.Tests/coverlet/coverage.runsettings \
-                    --collect:"XPlat Code Coverage"
+            - name: Test with coverage
+              run: dotnet test TestApp.Tests/TestApp.Tests.csproj --no-build --settings TestApp.Tests/coverlet/coverage.runsettings --collect:"XPlat Code Coverage"
 
             - name: Install ReportGenerator
               run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
-            - name: Generate Coverage Report
+            - name: Generate coverage report
               run: |
                   reportgenerator \
                     -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" \
                     -targetdir:"CoverageReport" \
-                    -reporttypes:TextSummary
+                    -reporttypes:Html;TextSummary
 
-            - name: Upload Coverage Report
+            - name: Show coverage summary in console
+              run: cat CoverageReport/Summary.txt
+
+            - name: Upload coverage report artifact
               uses: actions/upload-artifact@v4
               with:
                   name: coverage-report
-                  path: CoverageReport/
+                  path: CoverageReport/**
