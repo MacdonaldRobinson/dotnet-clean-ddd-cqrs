@@ -1,45 +1,56 @@
-name: .NET
+name: .NET Coverage
 
 on:
     push:
-        branches: ["master"]
+        branches: ["main"]
     pull_request:
-        branches: ["master"]
+        branches: ["main"]
 
 jobs:
-    build:
+    build-and-test:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
             - name: Setup .NET
-              uses: actions/setup-dotnet@v4
+              uses: actions/setup-dotnet@v3
               with:
                   dotnet-version: 9.0.x
 
             - name: Restore dependencies
               run: dotnet restore
 
-            - name: Build
-              run: dotnet build --no-restore --verbosity normal
+            - name: Build solution
+              run: dotnet build --no-restore --configuration Release
 
-            - name: Test with code coverage
+            - name: Run tests with coverage
               run: |
-                  dotnet test --no-build --settings TestApp.Tests/coverlet/coverage.runsettings --collect:"XPlat Code Coverage" --verbosity normal
+                  mkdir -p TestApp.Tests/TestResults
+                  dotnet test \
+                    TestApp.Tests/TestApp.Tests.csproj \
+                    --no-build \
+                    --settings TestApp.Tests/coverlet/coverage.runsettings \
+                    --collect:"XPlat Code Coverage" \
+                    --results-directory TestApp.Tests/TestResults \
+                    --logger "trx;LogFileName=test_results.trx" \
+                    --verbosity normal
 
             - name: Install ReportGenerator
               run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
-            - name: Generate coverage reports
+            - name: Generate coverage report
               env:
                   PATH: ${{ env.PATH }}:/home/runner/.dotnet/tools
               run: |
-                  reportgenerator -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" -targetdir:CoverageReport -reporttypes:Html;TextSummary
+                  reportgenerator \
+                    -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" \
+                    -targetdir:CoverageReport \
+                    -reporttypes:Html;TextSummary
 
-            - name: Upload coverage reports
-              uses: actions/upload-artifact@v4
+            - name: Upload coverage artifact
+              uses: actions/upload-artifact@v3
               with:
                   name: coverage-report
                   path: CoverageReport
