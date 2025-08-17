@@ -15,4 +15,4 @@ appsettings.Local.json
 # Packages
 *.nupkg
 
-TestApp.Tests/CodeCoverage
+TestApp.Tests/CodeCoverage/TestResults
