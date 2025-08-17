@@ -22,28 +22,27 @@ jobs:
               run: dotnet restore
 
             - name: Build
-              run: dotnet build --no-restore --verbosity normal
+              run: dotnet build --no-restore
 
-            - name: Test with coverage
+            - name: Test with Coverage
               run: |
-                  dotnet test TestApp.Tests/TestApp.Tests.csproj \
+                  dotnet test ./TestApp.Tests/TestApp.Tests.csproj \
                     --no-build \
-                    --settings TestApp.Tests/coverlet/coverage.runsettings \
+                    --settings ./TestApp.Tests/coverlet/coverage.runsettings \
                     --collect:"XPlat Code Coverage"
 
-            - name: Generate coverage report
+            - name: Install ReportGenerator
+              run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+            - name: Generate Coverage Report
               run: |
-                  dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1.26
                   reportgenerator \
                     -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" \
-                    -targetdir:CoverageReport \
-                    -reporttypes:Html;TextSummary
+                    -targetdir:"CoverageReport" \
+                    -reporttypes:TextSummary
 
-            - name: Show coverage summary in console
-              run: cat CoverageReport/Summary.txt
-
-            - name: Upload coverage report artifact
-              uses: actions/upload-artifact@v3
+            - name: Upload Coverage Report
+              uses: actions/upload-artifact@v4
               with:
                   name: coverage-report
-                  path: CoverageReport
+                  path: CoverageReport/
