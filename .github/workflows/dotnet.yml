@@ -29,7 +29,12 @@ jobs:
               run: |
                   dotnet test --no-build --settings TestApp.Tests/coverlet/coverage.runsettings --collect:"XPlat Code Coverage" --verbosity normal
 
+            - name: Install ReportGenerator
+              run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
             - name: Generate coverage reports
+              env:
+                  PATH: ${{ env.PATH }}:/home/runner/.dotnet/tools
               run: |
                   reportgenerator -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" -targetdir:CoverageReport -reporttypes:Html;TextSummary
 
