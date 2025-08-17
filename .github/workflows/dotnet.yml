@@ -1,21 +1,22 @@
-name: .NET Core CI with Coverage
+name: CI Workflow
 
 on:
     push:
-        branches: ["master"]
+        branches:
+            - master
     pull_request:
-        branches: ["master"]
-    workflow_dispatch:
+        branches:
+            - master
 
 jobs:
-    build-and-test:
+    build:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout repository
+            - name: Checkout code
               uses: actions/checkout@v3
 
-            - name: Setup .NET
+            - name: Setup .NET 9
               uses: actions/setup-dotnet@v3
               with:
                   dotnet-version: "9.0.x"
@@ -23,16 +24,14 @@ jobs:
             - name: Restore dependencies
               run: dotnet restore
 
-            - name: Build solution
-              run: dotnet build --no-restore --configuration Release
+            - name: Build
+              run: dotnet build --no-restore
 
             - name: Run tests with coverage
               run: |
-                  dotnet test \
-                    --no-build \
+                  dotnet test --no-build \
                     --settings TestApp.Tests/coverlet/coverage.runsettings \
                     --collect:"XPlat Code Coverage" \
-                    --results-directory TestApp.Tests/TestResults \
                     --verbosity normal
 
             - name: Install ReportGenerator
@@ -40,14 +39,13 @@ jobs:
 
             - name: Generate coverage report
               run: |
-                  export PATH="$PATH:$HOME/.dotnet/tools"
                   reportgenerator \
                     -reports:"TestApp.Tests/TestResults/*/coverage.cobertura.xml" \
                     -targetdir:CoverageReport \
                     -reporttypes:Html;TextSummary
 
-            - name: Upload coverage report artifact
-              uses: actions/upload-artifact@v3
+            - name: Upload Coverage Report
+              uses: actions/upload-artifact@v4
               with:
                   name: coverage-report
-                  path: CoverageReport
+                  path: CoverageReport/
