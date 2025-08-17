@@ -4,16 +4,22 @@
     <DataCollectors>
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
+          <!-- Exclude by namespace -->
           <Exclude>
-            <!-- Exclude migrations, designer files, etc. -->
-            [*]TestApp.Infrastructure.Migrations.*
             [*]*Designer.cs
           </Exclude>
+
+          <!-- Exclude by file path -->
+          <ExcludeByFile>
+            **/Migrations/*.cs
+          </ExcludeByFile>
+
+          <!-- Include only main project namespaces -->
           <Include>
-            <!-- Include your main projects -->
             [*]TestApp.Domain.*
             [*]TestApp.Application.*
             [*]TestApp.Infrastructure.*
+            [*]TestApp.WebApi.*
           </Include>
         </Configuration>
       </DataCollector>

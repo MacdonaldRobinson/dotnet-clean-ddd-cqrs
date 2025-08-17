@@ -1,23 +1,23 @@
 Summary
-  Generated on: 2025-08-17 - 9:07:26 AM
-  Coverage date: 2025-08-17 - 9:07:04 AM
-  Parser: Cobertura
+  Generated on: 2025-08-17 - 10:52:23 AM
+  Coverage date: 2025-08-17 - 10:39:50 AM - 2025-08-17 - 10:52:22 AM
+  Parser: MultiReport (2x Cobertura)
   Assemblies: 4
-  Classes: 28
-  Files: 25
-  Line coverage: 69%
+  Classes: 26
+  Files: 22
+  Line coverage: 87.3%
   Covered lines: 241
-  Uncovered lines: 108
-  Coverable lines: 349
-  Total lines: 753
+  Uncovered lines: 35
+  Coverable lines: 276
+  Total lines: 616
   Branch coverage: 59% (13 of 22)
   Covered branches: 13
   Total branches: 22
-  Method coverage: 85.2% (52 of 61)
-  Full method coverage: 78.6% (48 of 61)
+  Method coverage: 91.2% (52 of 57)
+  Full method coverage: 84.2% (48 of 57)
   Covered methods: 52
   Fully covered methods: 48
-  Total methods: 61
+  Total methods: 57
 
 TestApp.Application                                                                          85.7%
   TestApp.Application.Customers.Commands.CommandHandlers.CreateCustomerCommandHandler         100%
@@ -37,13 +37,11 @@ TestApp.Domain                                                                  
   TestApp.Domain.Customers.Entities.Customer                                                  100%
   TestApp.Domain.Customers.ValueObjects.CustomerNameValueObject                               100%
 
-TestApp.Infrastructure                                                                       42.6%
+TestApp.Infrastructure                                                                       83.1%
   TestApp.Infrastructure.AppDbContext                                                        90.9%
   TestApp.Infrastructure.Common.Repository.BaseRepository<T1, T2>                             100%
   TestApp.Infrastructure.Customers.EntityTypeConfiguration.CustomerEntityTypeConfiguration    100%
   TestApp.Infrastructure.Customers.Repositories.CustomerRepository                           66.6%
-  TestApp.Infrastructure.Migrations.AppDbContextModelSnapshot                                   0%
-  TestApp.Infrastructure.Migrations.Initial                                                     0%
 
 TestApp.WebApi                                                                               86.7%
   Program                                                                                    82.3%
