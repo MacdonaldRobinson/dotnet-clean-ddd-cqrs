@@ -7,6 +7,7 @@ using TestApp.WebApi.Common;
 namespace TestApp.WebApi.Auth;
 
 public record LoginRequestDto(string UserName, string Password);
+public record LoginResponseDto(string Token);
 
 public static class AuthEndpoints
 {
@@ -38,7 +39,7 @@ public static class AuthEndpoints
                 signingCredentials: creds
             );
 
-            var response = new { token = new JwtSecurityTokenHandler().WriteToken(token) };
+            var response = new LoginResponseDto(new JwtSecurityTokenHandler().WriteToken(token));
 
             return Results.Ok(response);
         }

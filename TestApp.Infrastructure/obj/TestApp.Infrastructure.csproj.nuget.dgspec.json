@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\github\\dotnet\\TestApp\\TestApp.Infrastructure\\TestApp.Infrastructure.csproj": {}
+    "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Infrastructure\\TestApp.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\github\\dotnet\\TestApp\\TestApp.Domain\\TestApp.Domain.csproj": {
+    "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Domain\\TestApp.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\github\\dotnet\\TestApp\\TestApp.Domain\\TestApp.Domain.csproj",
+        "projectUniqueName": "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Domain\\TestApp.Domain.csproj",
         "projectName": "TestApp.Domain",
-        "projectPath": "D:\\github\\dotnet\\TestApp\\TestApp.Domain\\TestApp.Domain.csproj",
+        "projectPath": "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Domain\\TestApp.Domain.csproj",
         "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
-        "outputPath": "D:\\github\\dotnet\\TestApp\\TestApp.Domain\\obj\\",
+        "outputPath": "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -76,14 +76,14 @@
         }
       }
     },
-    "D:\\github\\dotnet\\TestApp\\TestApp.Infrastructure\\TestApp.Infrastructure.csproj": {
+    "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Infrastructure\\TestApp.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\github\\dotnet\\TestApp\\TestApp.Infrastructure\\TestApp.Infrastructure.csproj",
+        "projectUniqueName": "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Infrastructure\\TestApp.Infrastructure.csproj",
         "projectName": "TestApp.Infrastructure",
-        "projectPath": "D:\\github\\dotnet\\TestApp\\TestApp.Infrastructure\\TestApp.Infrastructure.csproj",
+        "projectPath": "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Infrastructure\\TestApp.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
-        "outputPath": "D:\\github\\dotnet\\TestApp\\TestApp.Infrastructure\\obj\\",
+        "outputPath": "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -105,8 +105,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\github\\dotnet\\TestApp\\TestApp.Domain\\TestApp.Domain.csproj": {
-                "projectPath": "D:\\github\\dotnet\\TestApp\\TestApp.Domain\\TestApp.Domain.csproj"
+              "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Domain\\TestApp.Domain.csproj": {
+                "projectPath": "D:\\github\\dotnet\\dotnet-clean-ddd-cqrs\\TestApp.Domain\\TestApp.Domain.csproj"
               }
             }
           }

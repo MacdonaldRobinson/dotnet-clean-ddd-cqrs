@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using TestApp.Application.Customers.Dtos;
 using TestApp.Domain.Customers.Entities;
+using TestApp.WebApi.Auth;
 using Xunit;
 
 namespace TestApp.Tests.WebApi.Customers;
@@ -43,9 +44,24 @@ public class TestCustomerEndpoints : IClassFixture<CustomWebApplicationFactory>
         return await response.Content.ReadFromJsonAsync<List<CustomerReadDto>>();
     }
 
+    public async Task<LoginResponseDto?> GetToken()
+    {
+        var httpClient = _customWebApplicationFactory.CreateClient();
+        var response = await httpClient.PostAsJsonAsync("/api/login", new LoginRequestDto("Mac", "Password"));
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<LoginResponseDto>();
+    }
+
     public async Task<CustomerReadDto?> CreateCustomer(CustomerWriteDto customerWriteDto)
     {
         var httpClient = _customWebApplicationFactory.CreateClient();
+
+        var loginResponseDto = await GetToken();
+        Assert.NotNull(loginResponseDto);
+
+        httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {loginResponseDto.Token}");
+
         var response = await httpClient.PostAsJsonAsync("/api/customers", customerWriteDto);
         response.EnsureSuccessStatusCode();
 
